@@ -72,11 +72,10 @@ if($_COOKIE['user']== ''):
                         for ($i = 0; $i < $_POST['count_questions']; $i++) {
                             echo '<label for="question' . $i . '">Вопрос №' . ($i + 1) . ': </label>
                                 <input type="text" class="form-control mlrb mr-5" id="question' . $i . '"  name="question' . $i . '"required>';
-                                                if ($_POST['theme' . $i] == 'radio' || $_POST['theme' . $i] == 'checkbox') {
+                                                if ($_POST['theme' . $i] == 'checkbox') {
                                                     echo '<label for="options' . $i . '">Варианты ответов через запятую: </label>
-                                <input type="text" class="form-control mlrb mb-5" id="options' . $i . '" name="options' . $i . '" required>';
+                                                    <input type="text" class="form-control mlrb mb-5" id="options' . $i . '" name="options' . $i . '" required>';
                                                 }
-
                                             }
                                             echo '
                                 <label for="project_link">Ссылка на проект</label> <input class="form-control mlrb col-12" name="project_link" id="project_link" type="text">
