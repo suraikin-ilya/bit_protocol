@@ -5,7 +5,7 @@ var SessionTimeout=function() {
             message:"Your session is about to expire.", 
             keepAliveUrl:"", 
             redirUrl:"auth_lockscreen.html", 
-            logoutUrl:"auth_login.html", 
+            logoutUrl:"auth_login.php",
             warnAfter:3e3, 
             redirAfter:21e3, 
             ignoreUserActivity:!0, 
