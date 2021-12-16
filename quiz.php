@@ -67,7 +67,7 @@ function get_type($a){
                         $radio=explode(',',$question['options']);
                         if($question['type']=='radio') {
                             foreach ($radio as $num => $value) {
-                                echo '<input  class="form-control" style=";;display: inline-block;width: 50px;"' . get_type($question['type']) . ' id="question' . $key . $num . '" name="question' . $key . '" value="1">';
+                                echo '<input  class="form-control star-rating" style=";;display: inline-block;width: 50px;"' . get_type($question['type']) . ' id="question' . $key . $num . '" name="question' . $key . '" value="1">';
                                 echo '<input  class="form-control" style=";;display: inline-block;width: 50px;"' . get_type($question['type']) . ' id="question' . $key . $num . '" name="question' . $key . '" value="2">';
                                 echo '<input  class="form-control" style=";;display: inline-block;width: 50px;"' . get_type($question['type']) . ' id="question' . $key . $num . '" name="question' . $key . '" value="3">';
                                 echo '<input  class="form-control" style=";;display: inline-block;width: 50px;"' . get_type($question['type']) . ' id="question' . $key . $num . '" name="question' . $key . '" value="4">';
@@ -105,13 +105,13 @@ function get_type($a){
                 $answers[$i]['answer']=$_POST['question'.$i];
         }
         $answers = json_encode($answers, JSON_UNESCAPED_UNICODE);
-        $answer_id = bin2hex(random_bytes(5));
+        $answer_id = bin2hex(random_bytes(10));
         $project_link=$_GET['link'];
         $answers_query="INSERT INTO `answers` (project_link, answers, answer_id, interview_id)
                         VALUES ('$project_link', '$answers', '$answer_id', NULL)";
         $result = mysqli_query($db_connect, $answers_query) or die("Ошибка " . mysqli_error($db_connect));
 
-        header('Location: /contacts.php?link='.$_GET['link'].'');
+        header('Location: /contacts.php?link='.$_GET['link'].'&answer_id='.$answer_id);
     }
 
     ?>
