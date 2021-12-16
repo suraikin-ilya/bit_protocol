@@ -53,7 +53,7 @@ function get_type($a){
         if(mysqli_num_rows($result)!=0){
             $session = mysqli_fetch_row($result);
             echo '<h1>'.$session[3].'</h1>
-                <form action="/contacts.php?link='.$_GET['link'].'" method="post" class="question dib">';
+                <form action="" method="post" class="question dib">';
             if(true){
                 $questions = json_decode($session[4], true);
                 print_r ($questions);
@@ -67,8 +67,13 @@ function get_type($a){
                         $radio=explode(',',$question['options']);
                         if($question['type']=='radio') {
                             foreach ($radio as $num => $value) {
-                                echo '<input  class="form-control" style=";;display: inline-block;width: 50px;"' . get_type($question['type']) . ' id="question' . $key . $num . '" name="question' . $key . '" value="' . $value . '">';
+                                echo '<input  class="form-control" style=";;display: inline-block;width: 50px;"' . get_type($question['type']) . ' id="question' . $key . $num . '" name="question' . $key . '" value="1">';
+                                echo '<input  class="form-control" style=";;display: inline-block;width: 50px;"' . get_type($question['type']) . ' id="question' . $key . $num . '" name="question' . $key . '" value="2">';
+                                echo '<input  class="form-control" style=";;display: inline-block;width: 50px;"' . get_type($question['type']) . ' id="question' . $key . $num . '" name="question' . $key . '" value="3">';
+                                echo '<input  class="form-control" style=";;display: inline-block;width: 50px;"' . get_type($question['type']) . ' id="question' . $key . $num . '" name="question' . $key . '" value="4">';
+                                echo '<input  class="form-control" style=";;display: inline-block;width: 50px;"' . get_type($question['type']) . ' id="question' . $key . $num . '" name="question' . $key . '" value="5">';
                                 echo '<label  for="question' . $key . $num . '">' . $value . '</label><br><br>';
+
                             }
                         }else{
                             foreach ($radio as $num => $value) {
@@ -106,6 +111,7 @@ function get_type($a){
                         VALUES ('$project_link', '$answers', '$answer_id', NULL)";
         $result = mysqli_query($db_connect, $answers_query) or die("Ошибка " . mysqli_error($db_connect));
 
+        header('Location: /contacts.php?link='.$_GET['link'].'');
     }
 
     ?>
