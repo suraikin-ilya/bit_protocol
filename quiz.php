@@ -111,7 +111,7 @@ function get_type($a){
                         VALUES ('$project_link', '$answers', '$answer_id', NULL)";
         $result = mysqli_query($db_connect, $answers_query) or die("Ошибка " . mysqli_error($db_connect));
 
-        header('Location: /contacts.php?link='.$_GET['link'].'&answer_id='.$answer_id);
+        header('Location: /bit_protocol/contacts.php?link='.$_GET['link'].'&answer_id='.$answer_id);
     }
 
     ?>
