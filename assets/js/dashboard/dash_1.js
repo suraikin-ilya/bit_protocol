@@ -238,7 +238,7 @@ try {
       floating: false,
       style: {
         fontSize: '18px',
-        color:  '#4361ee'
+        color:  '#ffc107'
       }
     },
     title: {

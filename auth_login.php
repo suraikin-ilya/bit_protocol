@@ -24,7 +24,7 @@
                 <div class="form-container">
                     <div class="form-content">
 
-                        <h1 class="">Log In to <a href="index.html"><span class="brand-name">BIT</span></a></h1>
+                        <h1 class="">Log In to <a href="index.php"><span class="brand-name">BIT</span></a></h1>
                         <p class="signup-link">New Here? <a href="auth_register.php">Create an account</a></p>
                         <form class="text-left" action="includes/auth.php" method="post">
                             <div class="form">
