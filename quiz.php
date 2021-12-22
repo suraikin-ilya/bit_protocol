@@ -1,8 +1,10 @@
 <?php
-$db_connect = mysqli_connect("std-mysql", "std_1252_bit", "12345678", "std_1252_bit")
-or die("Ошибка " . mysqli_error($db_connect));
-mysqli_set_charset($db_connect, "utf8");
-$_SERVER['SERVER_NAME'] = 'localhost:63342/bit_protocol';
+//$db_connect = mysqli_connect("std-mysql", "std_1252_bit", "12345678", "std_1252_bit")
+//or die("Ошибка " . mysqli_error($db_connect));
+//mysqli_set_charset($db_connect, "utf8");
+//$_SERVER['SERVER_NAME'] = 'localhost:63342/bit_protocol';
+
+require "includes/db_connection.php";
 
 function get_type($a){
     if($a=='number') {
@@ -29,50 +31,57 @@ function get_type($a){
     <title>BIT Quiz </title>
     <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico"/>
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500&amp;display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Quicksand:400,500,600,700&display=swap" rel="stylesheet">
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/plugins.css" rel="stylesheet" type="text/css" />
-    <link href="assets/css/authentication/form-1.css" rel="stylesheet" type="text/css" />
+<!--    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />-->
+<!--    <link href="assets/css/plugins.css" rel="stylesheet" type="text/css" />-->
+<!--    <link href="assets/css/authentication/form-1.css" rel="stylesheet" type="text/css" />-->
     <!-- END GLOBAL MANDATORY STYLES -->
-    <link rel="stylesheet" type="text/css" href="assets/css/forms/theme-checkbox-radio.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/forms/switches.css">
+<!--    <link rel="stylesheet" type="text/css" href="assets/css/forms/theme-checkbox-radio.css">-->
+<!--    <link rel="stylesheet" type="text/css" href="assets/css/forms/switches.css">-->
+    <link rel="stylesheet"  href="css/style.css">
+
+
 </head>
-<body class="form">
-
-<div class="container">
 
 
+<div class="quiz">
 
 
-    <link rel="stylesheet" href="styles.css">
-    <body class="text-center">
+
+
+
+    <body class="">
     <?php
     if (!empty($_GET['link'])) {
         $query ="SELECT * FROM `projects` WHERE `project_link`= '".$_GET['link']."'";
         $result = mysqli_query($db_connect, $query) or die("Ошибка " . mysqli_error($db_connect));
         if(mysqli_num_rows($result)!=0){
             $session = mysqli_fetch_row($result);
-            echo '<h1>'.$session[3].'</h1>
+            echo '<div class="quiz-name"><p class="quiz-name__text">'.$session[3].'</p></div>
+                <div class="quiz__line"></div>
                 <form action="" method="post" class="question dib">';
             if(true){
                 $questions = json_decode($session[4], true);
-                print_r ($questions);
+                //print_r ($questions);
                 foreach ($questions as $key =>$question){
-                    echo '<hr>';
+
                     if($question['type']!='checkbox'&&$question['type']!='radio'){
-                        echo '<label style="font-size:30px" for="question'.$key.'">'.$question['question'].'</label><br>';
-                        echo '<input class="form-control"  id="question'.$key.'" name="question'.$key.'" '. get_type($question['type']) .'>'.$question[$question].'</input><br><br>';
+                        echo '<label class="star-rating-title" for="question'.$key.'">'.$question['question'].'</label><br>';
+                        echo '<input  style="margin-top: 10px;" class="quiz-review"  id="question'.$key.'" name="question'.$key.'" '. get_type($question['type']) .'>'.$question[$question].'</input><br><br>';
                     }else{
-                        echo '<p>'.$question['question'].'</p>';
+                        echo '
+                        <p class="star-rating-title">'.$question['question'].'</p>';
                         $radio=explode(',',$question['options']);
                         if($question['type']=='radio') {
                             foreach ($radio as $num => $value) {
-                                echo '<input  class="form-control star-rating" style=";;display: inline-block;width: 50px;"' . get_type($question['type']) . ' id="question' . $key . $num . '" name="question' . $key . '" value="1">';
-                                echo '<input  class="form-control" style=";;display: inline-block;width: 50px;"' . get_type($question['type']) . ' id="question' . $key . $num . '" name="question' . $key . '" value="2">';
-                                echo '<input  class="form-control" style=";;display: inline-block;width: 50px;"' . get_type($question['type']) . ' id="question' . $key . $num . '" name="question' . $key . '" value="3">';
-                                echo '<input  class="form-control" style=";;display: inline-block;width: 50px;"' . get_type($question['type']) . ' id="question' . $key . $num . '" name="question' . $key . '" value="4">';
-                                echo '<input  class="form-control" style=";;display: inline-block;width: 50px;"' . get_type($question['type']) . ' id="question' . $key . $num . '" name="question' . $key . '" value="5">';
-                                echo '<label  for="question' . $key . $num . '">' . $value . '</label><br><br>';
+                                echo '<input  class="star-rating__value"' . get_type($question['type']) . ' id="question' . $key . $num . '" name="question' . $key . '" value="1">';
+                                echo '<input  class="star-rating__value"' . get_type($question['type']) . ' id="question' . $key . $num . '" name="question' . $key . '" value="2">';
+                                echo '<input  class="star-rating__value"' . get_type($question['type']) . ' id="question' . $key . $num . '" name="question' . $key . '" value="3">';
+                                echo '<input  class="star-rating__value"' . get_type($question['type']) . ' id="question' . $key . $num . '" name="question' . $key . '" value="4">';
+                                echo '<input  class="star-rating__value"' . get_type($question['type']) . ' id="question' . $key . $num . '" name="question' . $key . '" value="5">';
+                                echo '<label class="class="star-rating-title" for="question' . $key . $num . '">' . $value . '</label><br><br>';
 
                             }
                         }else{
@@ -83,7 +92,9 @@ function get_type($a){
                         }
                     }
                 }
-                echo '<input  class="btn btn-primary btn-lg btn-block button_margin" style="width:25%;margin: 10px auto;" type="submit" value="Отправить"> ';
+                echo '<div  class="btn btn-send" id="btn-send">
+                        <input style="width:100px; font-family: montserrat, sans-serif;border: white; background: white;" class="btn btn-send__title btn-send" type="submit" value="Отправить"> 
+                        </div>';
             }
 
         }else{
@@ -111,7 +122,7 @@ function get_type($a){
                         VALUES ('$project_link', '$answers', '$answer_id', NULL)";
         $result = mysqli_query($db_connect, $answers_query) or die("Ошибка " . mysqli_error($db_connect));
 
-        header('Location: /bit_protocol/contacts.php?link='.$_GET['link'].'&answer_id='.$answer_id);
+        header('Location: /contacts.php?link='.$_GET['link'].'&answer_id='.$answer_id);
     }
 
     ?>
