@@ -40,6 +40,8 @@ function get_type($a){
     <!-- END GLOBAL MANDATORY STYLES -->
 <!--    <link rel="stylesheet" type="text/css" href="assets/css/forms/theme-checkbox-radio.css">-->
 <!--    <link rel="stylesheet" type="text/css" href="assets/css/forms/switches.css">-->
+    <meta name="format-detection" content="telephone=no">
+
     <link rel="stylesheet"  href="css/style.css">
 
 
@@ -75,16 +77,18 @@ function get_type($a){
                         <p class="star-rating-title">'.$question['question'].'</p>';
                         $radio=explode(',',$question['options']);
                         if($question['type']=='radio') {
-                            foreach ($radio as $num => $value) {
-                                echo '<input  class="star-rating__value"' . get_type($question['type']) . ' id="question' . $key . $num . '" name="question' . $key . '" value="1">';
-                                echo '<input  class="star-rating__value"' . get_type($question['type']) . ' id="question' . $key . $num . '" name="question' . $key . '" value="2">';
-                                echo '<input  class="star-rating__value"' . get_type($question['type']) . ' id="question' . $key . $num . '" name="question' . $key . '" value="3">';
-                                echo '<input  class="star-rating__value"' . get_type($question['type']) . ' id="question' . $key . $num . '" name="question' . $key . '" value="4">';
-                                echo '<input  class="star-rating__value"' . get_type($question['type']) . ' id="question' . $key . $num . '" name="question' . $key . '" value="5">';
-                                echo '<label class="class="star-rating-title" for="question' . $key . $num . '">' . $value . '</label><br><br>';
+                            echo '<div class="star-rating__group">
+                    <img class="star-rating__img" src="assets/img/star.svg" alt="star">
+                    <img class="star-rating__img" src="assets/img/star.svg" alt="star">
+                    <img class="star-rating__img" src="assets/img/star.svg" alt="star">
+                    <img class="star-rating__img" src="assets/img/star.svg" alt="star">
+                    <img class="star-rating__img" src="assets/img/star.svg" alt="star">
+                </div>
+                <input  class="star-rating__value" type="hidden" id="question'.$key.'" name="question' . $key . '" value="0">
+                                <br><br>';
+                        }
+                    else{
 
-                            }
-                        }else{
                             foreach ($radio as $num => $value) {
                                 echo '<input class="form-control " style="display: inline-block;width: 50px;"' . get_type($question['type']) . ' id="question' . $key . $num . '" name="question' . $key . '[]" value="' . $value . '">';
                                 echo '<label style="display: inline-block" for="question' . $key . $num . '">' . $value . '</label><br><br>';
@@ -93,7 +97,7 @@ function get_type($a){
                     }
                 }
                 echo '<div  class="btn btn-send" id="btn-send">
-                        <input style="width:100px; font-family: montserrat, sans-serif;border: white; background: white;" class="btn btn-send__title btn-send" type="submit" value="Отправить"> 
+                        <input style="-webkit-appearance: none; width:100px; font-family: montserrat, sans-serif;border: white; background: white;" class="btn btn-send__title btn-send" type="submit" value="Отправить"> 
                         </div>';
             }
 
@@ -138,6 +142,6 @@ function get_type($a){
 
     <!-- END GLOBAL MANDATORY SCRIPTS -->
     <script src="assets/js/authentication/form-1.js"></script>
-
+    <script src="assets/js/quiz.js"></script>
 </body>
 </html>

@@ -1,5 +1,6 @@
 html,
 body {
+  -webkit-appearance: none;
   font-size: 16px;
   box-sizing: border-box;
 }
@@ -43,6 +44,7 @@ p {
   margin: 0 auto;
   margin-bottom: 40px;
 }
+
 .quiz-logo__img {
   display: block;
   margin: 0 auto;
@@ -73,6 +75,7 @@ p {
   overflow: hidden;
   text-overflow: ellipsis;
 }
+
 .quiz__line {
     width: 100%;
     height: 4px;
@@ -86,6 +89,7 @@ p {
   font-size: 1.2rem;
   line-height: 140%;
 }
+
 .quiz-review {
   padding: 10px;
   border-radius: 15px;
@@ -94,6 +98,7 @@ p {
   margin-bottom: 30px;
   font-family: montserrat, sans-serif;
 }
+
 .quiz-review::placeholder {
   font-family: montserrat;
 }
@@ -138,6 +143,12 @@ p {
   border: #ffc107 1px solid;
 }
 
+.star-rating__group img {
+  min-width: 25px;
+  max-width: 30px;
+  width: 10%;
+}
+
 @media screen and (max-width: 900px) {
   .quiz {
     width: 80vw;
@@ -147,6 +158,7 @@ p {
     width: 300px;
   }
 }
+
 @media screen and (min-width: 900px) {
   .quiz-name__text,  .quiz-name-address {
     font-size: 2rem;
